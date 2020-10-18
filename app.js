@@ -72,7 +72,33 @@ function appMenu() {
     }
 
     function addEngineer() {
-
+        inquirer.prompt([
+            {
+                type: "input",
+                name: "engineerName",
+                message: "Engineer's name?"
+            },
+            {
+                type: "input",
+                name: "engineerID",
+                message: "Engineer's ID?"
+            },
+            {
+                type: "input",
+                name: "engineerEmail",
+                message: "Engineers email?"
+            },
+            {
+                type: "input",
+                name: "engineerGithub",
+                message: "Engineer's GitHub username?"
+            }
+        ]).then(function(answers) {
+            const engineer = new Engineer(answers.engineerName, answers.engineerID, answers.engineerEmail, answers.engineerGithub);
+            teamMembers.push(engineer);
+            idList.push(answers.engineerID);
+            createTeam();
+        })
     }
 
     function addIntern() {
