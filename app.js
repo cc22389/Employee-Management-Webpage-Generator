@@ -11,7 +11,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 
 const teamMembers = [];
-const idArray = [];
+const idList = [];
 
 function appMenu() {
 
@@ -25,7 +25,7 @@ function appMenu() {
             },
             {
                 type: "input",
-                name: "managerId",
+                name: "managerID",
                 message: "Manager's ID?"
             },
             {
@@ -41,13 +41,34 @@ function appMenu() {
         ]).then(function(answers) {
             const manager = new Manager(ansers.managerName, answers.managerID, answers.managerEmail, answers.managerOfficeNumber);
             teamMembers.push(manager);
-            idArray.push(answers.managerID);
+            idList.push(answers.managerID);
             createTeam();
         });
     }
 
     function createTeam() {
-
+        inquirer.prompt([
+            {
+                type: "list",
+                name: "memberRole",
+                message: "What is your team member's position?",
+                choices: [
+                    "Engineer",
+                    "Intern",
+                    "No more team members to add"
+                ]
+            }
+        ]).then(function(input) {
+            switch(input.memberRole) {
+                case "Engineer":
+                    addEngineer();
+                    break;
+                case "Intern":
+                    addIntern();
+                default:
+                    buildTeam();
+            }
+        });
     }
 
     function addEngineer() {
