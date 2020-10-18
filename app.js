@@ -39,7 +39,7 @@ function appMenu() {
                 message: "Manager's office number?"
             }
         ]).then(function(answers) {
-            const manager = new Manager(ansers.managerName, answers.managerID, answers.managerEmail, answers.managerOfficeNumber);
+            const manager = new Manager(answers.managerName, answers.managerID, answers.managerEmail, answers.managerOfficeNumber);
             teamMembers.push(manager);
             idList.push(answers.managerID);
             createTeam();
