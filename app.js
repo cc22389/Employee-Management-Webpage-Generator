@@ -136,7 +136,7 @@ function appMenu() {
           fs.mkdirSync(OUTPUT_DIR)
         }
         fs.writeFileSync(outputPath, render(teamMembers), "utf-8");
-      }
+      
             
     }
 
