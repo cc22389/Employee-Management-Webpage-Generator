@@ -102,7 +102,33 @@ function appMenu() {
     }
 
     function addIntern() {
-
+        inquirer.prompt([
+            {
+                type: "input",
+                name: "internName",
+                message: "Intern's name?"
+            },
+            {
+                type: "input",
+                name: "internID",
+                message: "Intern's ID?"
+            },
+            {
+                type: "input",
+                name: "internEmail",
+                message: "Intern's email?",
+            },
+            {
+                type: "input",
+                name: "internSchool",
+                message: "Intern's school?"
+            }
+        ]).then(function(answers) {
+            const intern = new Intern(answers.internName, answers.internID, answers.internEmail, answers.internSchool);
+            teamMembers.push(intern);
+            idList.push(answers.internID);
+            createTeam();
+        });
     }
 
     function buildTeam () {
